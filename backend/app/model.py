@@ -90,7 +90,7 @@ class RiskModel:
         mono = [0, 1, 0, 1, -1, 1, 1, -1, 0]
         candidates = {
             "Logistic Regression": make_pipeline(StandardScaler(), LogisticRegression(max_iter=500)),
-            "Random Forest": RandomForestClassifier(n_estimators=120, min_samples_leaf=8, max_depth=14, n_jobs=-1,
+            "Random Forest": RandomForestClassifier(n_estimators=120, min_samples_leaf=8, max_depth=14, n_jobs=1,
                                                     random_state=self.seed),
             "Gradient Boosting (monotonic)": HistGradientBoostingClassifier(
                 max_iter=350, learning_rate=0.06, max_leaf_nodes=31, l2_regularization=0.5,
@@ -116,7 +116,7 @@ class RiskModel:
         self.model = fitted[best]
 
         pi = permutation_importance(self.model, Xte[:2500], yte[:2500], scoring="roc_auc",
-                                    n_repeats=3, random_state=self.seed, n_jobs=-1)
+                                    n_repeats=3, random_state=self.seed, n_jobs=1)
         imp = np.clip(pi.importances_mean, 0, None)
         imp = imp / imp.sum() if imp.sum() > 0 else imp
         self.info = {
