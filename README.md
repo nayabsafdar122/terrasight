@@ -1,5 +1,7 @@
 # 🔥 TerraSight — AI Geospatial Wildfire Intelligence
 
+**🌐 Live demo: https://terrasight-aas-7dc5.vercel.app**
+
 ![TerraSight dashboard](docs/screenshot.jpg)
 
 TerraSight is a full-stack AI platform that predicts **wildfire risk across Southern California** on an
